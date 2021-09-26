@@ -26,6 +26,7 @@ Spring Security 5
 Apache Camel
     - Camel Rest
     - Camel Velocity
+HSQLDB
 Spring Test
 Junit5
 Mockito
