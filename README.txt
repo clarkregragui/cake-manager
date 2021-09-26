@@ -22,6 +22,7 @@ TECHNOLOGIES
 Maven
 Spring Boot
 Spring Data JPA
+Spring Security 5
 Apache Camel
     - Camel Rest
     - Camel Velocity
@@ -75,6 +76,10 @@ ADDITIONAL CHANGES
 - moved cakes.json into version control so that there's no remote dependency and changes to the file are versioned and tested.
 - removed all the duplicates from cakes.json file.
 - updated some of the photos.
+
+- Spring Security 5 Github OAuth2 implementation can be found here:
+
+https://github.com/clarkregragui/cake-manager/pull/3
 
 
 
