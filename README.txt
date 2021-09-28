@@ -2,8 +2,8 @@ Cake Manager Micro Service (fictitious)
 =======================================
 
 
-Solution delivered as Camel Spring Boot Rest Service Application
-With integration tests against fully deployed application.
+Solution delivered as Camel Spring Boot Rest Service Application secured with Github OAuth2
+and integration tests against fully deployed application.
 
 Github Actions script used for CI, Docker Image building and CD of image to DockerHub
 
