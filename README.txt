@@ -22,10 +22,11 @@ TECHNOLOGIES
 Maven
 Spring Boot
 Spring Data JPA
-Spring Security 5
+Spring Security 5 (OAuth2 for Github)
 Apache Camel
     - Camel Rest
     - Camel Velocity
+    - Camel Swagger
 HSQLDB
 Spring Test
 Junit5
@@ -50,6 +51,21 @@ Alternatively directly with
 
 java -jar cake-manager-1.0-SNAPSHOT.jar
 
+Under my java 11 installation I required -Djdk.tls.client.protocols=TLSv1.2 in order for PSK handshake to succceed for multiuser login
+as TLSv1.3 PSK(pre-shared-key) handshake was failing for some reason. So depending on your Java installation, you may need 
+
+-Djdk.tls.client.protocols=TLSv1.2 
+
+if you have any problem logging in using Github OAuth2.
+
+
+Additionally for the OAuth2 version, run with profile prod:
+
+-Dspring.profiles.active=prod
+
+Without OAuth2:
+
+-Dspring.profiles.active=test
 
 URLs
 
@@ -78,9 +94,6 @@ ADDITIONAL CHANGES
 - removed all the duplicates from cakes.json file.
 - updated some of the photos.
 
-- Spring Security 5 Github OAuth2 implementation can be found here:
-
-https://github.com/clarkregragui/cake-manager/pull/3
 
 
 
