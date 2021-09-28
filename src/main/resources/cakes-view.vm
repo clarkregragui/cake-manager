@@ -5,8 +5,6 @@
     <tr><td>$cake.title</td></tr>
     <tr><td>$cake.desc</td></tr>
     <tr><td><img src="$cake.image"></td></tr>
-    </br>
-    </br>
-    </br>
+
 #end
 </table>

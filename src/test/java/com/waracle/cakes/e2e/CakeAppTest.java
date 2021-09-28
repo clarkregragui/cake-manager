@@ -2,30 +2,21 @@ package com.waracle.cakes.e2e;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-import java.io.File;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.util.Collections;
 import java.util.List;
-import java.util.Set;
-import org.apache.camel.CamelContext;
-import org.apache.camel.component.jackson.JacksonDataFormat;
 import org.apache.camel.test.spring.junit5.CamelSpringBootTest;
 import org.assertj.core.util.Files;
 import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
-import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.context.SpringBootTest.WebEnvironment;
 import org.springframework.boot.test.mock.mockito.SpyBean;
 import org.springframework.boot.test.web.client.TestRestTemplate;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Profile;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.Resource;
@@ -38,15 +29,12 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.ActiveProfiles;
 
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.waracle.cakes.model.dto.CakeDTO;
 import com.waracle.cakes.service.CakeService;
 
 @ActiveProfiles("test")
 @CamelSpringBootTest
 @SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT)
-@DirtiesContext(classMode = DirtiesContext.ClassMode.AFTER_EACH_TEST_METHOD)
 public class CakeAppTest {
 
 	
@@ -57,14 +45,10 @@ public class CakeAppTest {
     @Autowired
     private TestRestTemplate restTemplate;
 
-    @Autowired
-    private CamelContext camelContext;
     
     @SpyBean
     private CakeService cakeService;
-    
-    private Set<CakeDTO> cakes;
-    
+        
     private static String expectedCakesView;
     
     @BeforeAll
@@ -74,14 +58,6 @@ public class CakeAppTest {
     	expectedCakesView.trim();
     }
     
-    @BeforeEach
-    public void before() throws IOException  {
-    	
-		File file = cakesJsonFileResource.getFile();
-		ObjectMapper objectMapper = new ObjectMapper();
-
-		cakes = objectMapper.readValue(file, new TypeReference<Set<CakeDTO>>(){});
-    }
     
     @Test
     public void getCakesTest() {
@@ -96,6 +72,7 @@ public class CakeAppTest {
     }
     
     @Test
+    @DirtiesContext(methodMode = DirtiesContext.MethodMode.AFTER_METHOD)
     public void postCreateCakeTest() {
 
     	CakeDTO newCake = new CakeDTO();
@@ -116,7 +93,6 @@ public class CakeAppTest {
     	assertThat(postResponse.getStatusCode()).isEqualTo(HttpStatus.CREATED);
     	
     	
-    	cakes.add(newCake);
     	ResponseEntity<List<CakeDTO>> getResponse = restTemplate.exchange("/cakes",
     			HttpMethod.GET, null, new ParameterizedTypeReference<List<CakeDTO>>() {
     	});

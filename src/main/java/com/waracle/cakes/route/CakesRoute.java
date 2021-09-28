@@ -54,7 +54,6 @@ public class CakesRoute extends RouteBuilder {
 				.route()
 					.bean(CakeService.class, "findCakes")
 					.to("velocity:cakes-view.vm")
-					.log("direct:velocityView logging")
 				.endRest()
 			.get("/cakes").outType(CakeDTO[].class)
 				.route().routeId("list-cakes-api")

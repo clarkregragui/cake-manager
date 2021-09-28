@@ -8,4 +8,4 @@ WORKDIR /opt/app
 
 COPY ${JAR_FILE} cake-manager.jar
 
-ENTRYPOINT ["java","-jar","cake-manager.jar"]
+ENTRYPOINT ["java","-Dspring.profiles.active=prod","-jar","cake-manager.jar"]

@@ -42,4 +42,10 @@ spring:
                     github:
                        clientId: b70d431814e6d107934d
                        clientSecret: 9dd51deb2f8a55fe0ee7856176499c882f608281
+                       
+logging:
+  level: 
+      root: INFO
+      com.waracle.cakes: DEBUG
+      org.apache.camel: DEBUG                       
                                 
