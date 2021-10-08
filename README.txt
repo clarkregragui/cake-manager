@@ -1,21 +1,5 @@
-Cake Manager Micro Service (fictitious)
-=======================================
-
-
-Solution delivered as Camel Spring Boot Rest Service Application secured with Github OAuth2
-and integration tests against fully deployed application.
-
-Github Actions script used for CI, Docker Image building and CD of image to DockerHub
-
-GitHub
-
-https://github.com/clarkregragui/cake-manager
-
-DockerHub
-
-https://hub.docker.com/repository/docker/clarkregragui/docker-cakes-manager-repo
-
-
+Cake Manager Micro Service
+===========================
 
 TECHNOLOGIES
 
@@ -33,9 +17,26 @@ Junit5
 Mockito
 Docker
 
+Github Actions CI, Docker Image creation, deploy to DockerHub
 
 
-To run
+
+Solution delivered as Camel Spring Boot Rest Service Application secured with Github OAuth2
+and integration tests against fully deployed application.
+
+Github Actions script used for CI, Docker Image building and CD of image to DockerHub
+
+GitHub
+
+https://github.com/clarkregragui/cake-manager
+
+DockerHub
+
+https://hub.docker.com/repository/docker/clarkregragui/docker-cakes-manager-repo
+
+
+TO RUN
+=======
 
 mvn package
 
@@ -67,7 +68,11 @@ Without OAuth2:
 
 -Dspring.profiles.active=test
 
+If running in an IDE then the lombok jar must be installed.
+
+
 URLs
+====
 
 Swagger API Docs
 
@@ -88,20 +93,11 @@ POST http://localhost:8080/cakes
 
 
 ADDITIONAL CHANGES
+==================
 
 - deleted incomplete legacy solution
 - moved cakes.json into version control so that there's no remote dependency and changes to the file are versioned and tested.
 - removed all the duplicates from cakes.json file.
 - updated some of the photos.
-
-
-
-
-
-
-
-
-
-
 
 
