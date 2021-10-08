@@ -16,7 +16,7 @@ Spring Test
 Junit5
 Mockito
 Docker
-Github Actions CI, Docker Image creation, published to DockerHub
+Github Actions CI - Build, Test, Docker Image creation, published to DockerHub
 
 
 
