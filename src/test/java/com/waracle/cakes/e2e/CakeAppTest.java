@@ -36,10 +36,6 @@ import com.waracle.cakes.service.CakeService;
 @CamelSpringBootTest
 @SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT)
 public class CakeAppTest {
-
-	
-	@Value("classpath:cakes.json")
-	Resource cakesJsonFileResource;
 	
 	
     @Autowired
@@ -51,11 +47,20 @@ public class CakeAppTest {
         
     private static String expectedCakesView;
     
+    private static List<CakeDTO> expectedCakesList;
+    
     @BeforeAll
     public static void beforeClass() throws IOException {
     	Resource cakesViewFileResource = new ClassPathResource("expectedCakesView.html");
     	expectedCakesView = Files.contentOf(cakesViewFileResource.getFile(), StandardCharsets.UTF_8);
     	expectedCakesView.trim();
+    	
+    	Resource cakesJsonFileResource = new ClassPathResource("cakes.json");
+    	String json = Files.contentOf(cakesJsonFileResource.getFile(), StandardCharsets.UTF_8);
+    	ObjectMapper mapper = new ObjectMapper();
+    	expectedCakesList = mapper.readValue(json, new TypeReference<List<CakeDTO>>(){});
+    	
+
     }
     
     
@@ -68,7 +73,7 @@ public class CakeAppTest {
         assertThat(response.getStatusCode()).isEqualTo(HttpStatus.OK);
         List<CakeDTO> cakes = response.getBody();
         assertThat(cakes).hasSize(5);
-        assertThat(cakes).containsAll(cakes);
+        assertThat(cakes).containsAll(expectedCakesList);
     }
     
     @Test
